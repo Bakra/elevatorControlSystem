@@ -60,7 +60,7 @@ export default function ElevatorControlSystem() {
 
     const call: ElevatorCall = {
       id: Math.random().toString(36).substring(2, 9),
-      floor,
+      floor: Math.min(floor, FLOORS),
       direction,
       timestamp: Date.now(),
     };
@@ -178,9 +178,9 @@ export default function ElevatorControlSystem() {
             fromFloor: elevator.floor,
             toFloor:
               elevator.direction === "up"
-                ? Math.floor(Math.random() * (FLOORS - elevator.floor)) +
+                ? Math.min(Math.floor(Math.random() * (FLOORS - elevator.floor)) +
                   elevator.floor +
-                  1
+                  1, FLOORS)
                 : Math.floor(Math.random() * (elevator.floor - 1)) + 1,
             direction: elevator.direction,
           };
@@ -212,7 +212,7 @@ export default function ElevatorControlSystem() {
 
           const nextFloor =
             elevator.direction === "up"
-              ? elevator.floor + 1
+              ? Math.min(elevator.floor + 1, FLOORS)
               : elevator.floor - 1;
 
           // Check if we should change direction
