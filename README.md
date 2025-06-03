@@ -2,7 +2,7 @@
 
 npm install && npm run dev
 
-## You can run the test with following command
+## Run the test cases with following command
 npm run test 
 
 ## Tech stack
